@@ -4,6 +4,7 @@ import com.mango.ds.GraphNode;
 import com.mango.problems.BinaryTreeIsBST;
 import com.mango.problems.BinaryTreeTilt;
 import com.mango.problems.EncodeDecodeNArrayTree;
+import com.mango.problems.LRUCache;
 import com.mango.problems.Permutation;
 import com.mango.problems.WordLadder;
 
@@ -21,7 +22,10 @@ public class Main {
         //BinaryTreeIsBST binaryTreeIsBST = new BinaryTreeIsBST();
         //binaryTreeIsBST.checkForBST();
 
-        EncodeDecodeNArrayTree encodeDecodeNArrayTree = new EncodeDecodeNArrayTree();
-        encodeDecodeNArrayTree.startEncodeDecode();
+        //EncodeDecodeNArrayTree encodeDecodeNArrayTree = new EncodeDecodeNArrayTree();
+        //encodeDecodeNArrayTree.startEncodeDecode();
+
+        LRUCache lruCache = new LRUCache();
+        lruCache.testLRUCache();
     }
 }
