@@ -70,7 +70,7 @@ public class WordLadder {
         return Boolean.TRUE;
     }
 
-    class WordAndTransformationCounter {
+    public class WordAndTransformationCounter {
         public String word;
         public int transformationCounter;
 

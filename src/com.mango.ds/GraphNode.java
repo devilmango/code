@@ -21,6 +21,9 @@ public class GraphNode {
         if (Objects.isNull(adjacentGraphNode)) {
             return;
         }
+        if (this.adjacentGraphNodes == null) {
+            this.adjacentGraphNodes = new ArrayList<>();
+        }
         this.adjacentGraphNodes.add(adjacentGraphNode);
     }
 }
