@@ -1,6 +1,7 @@
 package com.mango.main;
 
 import com.mango.ds.GraphNode;
+import com.mango.problems.BinaryTreeIsBST;
 import com.mango.problems.BinaryTreeTilt;
 import com.mango.problems.Permutation;
 import com.mango.problems.WordLadder;
@@ -13,7 +14,10 @@ public class Main {
         //Permutation permutation = new Permutation();
         //permutation.generatePermutation();
 
-        BinaryTreeTilt binaryTreeTilt = new BinaryTreeTilt();
-        binaryTreeTilt.processSolution();
+        //BinaryTreeTilt binaryTreeTilt = new BinaryTreeTilt();
+        //binaryTreeTilt.processSolution();
+
+        BinaryTreeIsBST binaryTreeIsBST = new BinaryTreeIsBST();
+        binaryTreeIsBST.checkForBST();
     }
 }

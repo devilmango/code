@@ -5,6 +5,12 @@ public class TreeNode {
     public TreeNode leftChild;
     public TreeNode rightChild;
 
+    public TreeNode (int weight) {
+        this.weight = weight;
+        this.leftChild = null;
+        this.rightChild = null;
+    }
+
     public TreeNode (int weight, TreeNode leftChild, TreeNode rightChild) {
         this.weight = weight;
         this.leftChild = leftChild;

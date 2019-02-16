@@ -5,57 +5,48 @@ import com.mango.ds.TreeNode;
 import java.util.Objects;
 
 /**
- * LeetCode: 563 Binary Tree Tilt
+ * Check if given binary tree is BST.
+ * Source: Unknown
+ *
+ * Tree may contain node with same weight. If so, put that node in left side
  */
-public class BinaryTreeTilt {
+public class BinaryTreeIsBST {
 
-    private int findTilt(TreeNode root) {
-        return findTiltUtility(root).tiltValue;
+    private Boolean isBST(TreeNode root) {
+        return isBSTUtility(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
-    private TiltDataCollector findTiltUtility(TreeNode root) {
+    private Boolean isBSTUtility(TreeNode root, int min, int max) {
+
         if (Objects.isNull(root)) {
-            return new TiltDataCollector(0, 0);
+            return Boolean.TRUE;
         }
 
-        TiltDataCollector leftTiltDataCollector = findTiltUtility(root.leftChild);
-        TiltDataCollector rightTiltDataCollector = findTiltUtility(root.rightChild);
-
-        int totalTiltSoFar = (leftTiltDataCollector.tiltValue + rightTiltDataCollector.tiltValue) +
-                Math.abs(leftTiltDataCollector.totalWeightOfChild - rightTiltDataCollector.totalWeightOfChild);
-        int totalWeightSoFar = leftTiltDataCollector.totalWeightOfChild + rightTiltDataCollector.totalWeightOfChild;
-
-        return new TiltDataCollector(
-                totalTiltSoFar,
-                (root.weight + totalWeightSoFar)
-        );
-    }
-
-    class TiltDataCollector {
-        public int tiltValue;
-        public int totalWeightOfChild;
-
-        public TiltDataCollector(int tiltValue, int totalWeightOfChild) {
-            this.tiltValue = tiltValue;
-            this.totalWeightOfChild = totalWeightOfChild;
+        if (root.weight < min || root.weight > max) {
+            return Boolean.FALSE;
         }
+
+        return isBSTUtility(root.leftChild, min, root.weight) &&
+                isBSTUtility(root.rightChild, root.weight, max);
     }
 
-    public void processSolution() {
+    public void checkForBST() {
         sampleTest1();
         sampleTest2();
         sampleTest3();
         sampleTest4();
         sampleTest5();
         sampleTest6();
+        sampleTest7();
     }
+    private static final String MESSAGE = "isBST: [%s]";
 
     private void sampleTest1() {
         /*
          *         null    --> root
          */
         System.out.println("Test 1: Null root");
-        System.out.println("Total Tilt Of Tree: ["+ findTilt(null) +"]");
+        System.out.println(String.format(MESSAGE, isBST(null)));
         System.out.println("------------------------------------------");
     }
 
@@ -66,7 +57,7 @@ public class BinaryTreeTilt {
         TreeNode root = new TreeNode(8);
 
         System.out.println("Test 2: Only one Vertex");
-        System.out.println("Total Tilt Of Tree: ["+ findTilt(root) +"]");
+        System.out.println(String.format(MESSAGE, isBST(root)));
         System.out.println("------------------------------------------");
     }
 
@@ -80,7 +71,7 @@ public class BinaryTreeTilt {
         root.leftChild =  new TreeNode(3);
 
         System.out.println("Test 1: Tree with only left child");
-        System.out.println("Total Tilt Of Tree: ["+ findTilt(root) +"]");
+        System.out.println(String.format(MESSAGE, isBST(root)));
         System.out.println("------------------------------------------");
     }
 
@@ -97,7 +88,7 @@ public class BinaryTreeTilt {
         root.leftChild.leftChild =  new TreeNode(1);
 
         System.out.println("Test 4: Tree with two left child");
-        System.out.println("Total Tilt Of Tree: ["+ findTilt(root) +"]");
+        System.out.println(String.format(MESSAGE, isBST(root)));
         System.out.println("------------------------------------------");
     }
 
@@ -112,7 +103,7 @@ public class BinaryTreeTilt {
         root.rightChild =  new TreeNode(2);
 
         System.out.println("Test 5: Balanced tree with two child");
-        System.out.println("Total Tilt Of Tree: ["+ findTilt(root) +"]");
+        System.out.println(String.format(MESSAGE, isBST(root)));
         System.out.println("------------------------------------------");
     }
 
@@ -133,8 +124,30 @@ public class BinaryTreeTilt {
         root.rightChild.leftChild =  new TreeNode(2);
         root.rightChild.rightChild =  new TreeNode(13);
 
-        System.out.println("Test 5: Balanced tree with two level");
-        System.out.println("Total Tilt Of Tree: ["+ findTilt(root) +"]");
+        System.out.println("Test 6: Balanced tree with two level");
+        System.out.println(String.format(MESSAGE, isBST(root)));
+        System.out.println("------------------------------------------");
+    }
+
+    private void sampleTest7() {
+        /*
+        /*
+         *         8    --> root
+         *        / \
+         *       4  12
+         *      /   / \
+         *     1   9  13
+         */
+        TreeNode root = new TreeNode(8);
+        root.leftChild =  new TreeNode(4);
+        root.leftChild.leftChild =  new TreeNode(1);
+
+        root.rightChild =  new TreeNode(12);
+        root.rightChild.leftChild =  new TreeNode(9);
+        root.rightChild.rightChild =  new TreeNode(13);
+
+        System.out.println("Test 7: Balanced tree with two level and BST");
+        System.out.println(String.format(MESSAGE, isBST(root)));
         System.out.println("------------------------------------------");
     }
 }
