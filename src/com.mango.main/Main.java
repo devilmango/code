@@ -1,6 +1,7 @@
 package com.mango.main;
 
 import com.mango.ds.GraphNode;
+import com.mango.problems.BinaryTreeTilt;
 import com.mango.problems.Permutation;
 import com.mango.problems.WordLadder;
 
@@ -9,7 +10,10 @@ public class Main {
         //WordLadder wordLadder = new WordLadder();
         //wordLadder.testWordLadder();
 
-        Permutation permutation = new Permutation();
-        permutation.generatePermutation();
+        //Permutation permutation = new Permutation();
+        //permutation.generatePermutation();
+
+        BinaryTreeTilt binaryTreeTilt = new BinaryTreeTilt();
+        binaryTreeTilt.processSolution();
     }
 }
