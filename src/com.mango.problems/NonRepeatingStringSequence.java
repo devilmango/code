@@ -1,9 +1,6 @@
 package com.mango.problems;
 
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,63 +11,63 @@ public class NonRepeatingStringSequence {
 
     private int getMaxLenthNonRepeatingSequence(String sourceString) {
 
-        List<SequenceHolder> sequenceHolderList = generateLongestNonRepeatingSequence(sourceString);
-        if (sequenceHolderList.isEmpty()) {
-            return 0;
-        }
-
-        int maxLength = 0;
-        for (SequenceHolder sequenceHolder : sequenceHolderList) {
-            int sequenceHolderSequenceLength = sequenceHolder.sequence.length();
-            if (sequenceHolderSequenceLength > maxLength) {
-                maxLength = sequenceHolderSequenceLength;
-            }
-        }
-        return maxLength;
+        SequenceHolder sequenceHolder = generateLongestNonRepeatingSequence(sourceString);
+        System.out.print(sequenceHolder.sequence + "  ");
+        return sequenceHolder.length;
     }
 
-    private List<SequenceHolder> generateLongestNonRepeatingSequence(String sourceString) {
+    private SequenceHolder generateLongestNonRepeatingSequence(String sourceString) {
+        SequenceHolder maxLengthSequenceHolder = new SequenceHolder("", 0, 0, 0);
         if ( sourceString == null || sourceString.length() == 0 ) {
-            return Collections.emptyList();
+            return maxLengthSequenceHolder;
         }
 
-        Map<Character, Integer> mapOfCharacter = new HashMap<>();
-        List<SequenceHolder> sequenceHolderSet = new LinkedList<>();
+        Map<String, Integer> mapOfCharacter = new HashMap<>();
         int beginIndex = 0;
         int iterator = 0;
         for (; iterator < sourceString.length(); iterator++) {
-            Character character = sourceString.charAt(iterator);
+            String character = "" + sourceString.charAt(iterator);
+            //System.out.println("\nMap Content: "+ mapOfCharacter);
+            //System.out.println("Current Character: "+ character + " IndexCollected: ["+ beginIndex + ", "+ iterator + "] Stored: ["+maxLengthSequenceHolder.toString());
             if(!mapOfCharacter.containsKey(character)) {
                 mapOfCharacter.put(character, iterator);
                 continue;
             }
             int locationOfRepeatedCharacterInMap = mapOfCharacter.get(character);
-            if (locationOfRepeatedCharacterInMap == iterator - 1) {
-                beginIndex = iterator;
-                continue;
+            int maxLenghtSoFar = iterator - beginIndex;
+            if (maxLenghtSoFar > maxLengthSequenceHolder.length) {
+                maxLengthSequenceHolder.length = maxLenghtSoFar;
+                maxLengthSequenceHolder.beginIndex = beginIndex;
+                maxLengthSequenceHolder.endIndex = iterator;
             }
-            // Found a repeating character. Thus capture non-repeating sequence so far.
-            String nonRepeatingSequenceSoFar = sourceString.substring(beginIndex, iterator);
-            sequenceHolderSet.add(new SequenceHolder(nonRepeatingSequenceSoFar, beginIndex, iterator - 1));
-            beginIndex++;
             mapOfCharacter.put(character, iterator);
+            beginIndex = beginIndex < locationOfRepeatedCharacterInMap ? locationOfRepeatedCharacterInMap + 1 : beginIndex;
         }
         // At last insert the last sequence for safekeeping 😎
-        String nonRepeatingSequenceSoFar = sourceString.substring(beginIndex);
-        sequenceHolderSet.add(new SequenceHolder(nonRepeatingSequenceSoFar, beginIndex, iterator - 1));
-
-        return sequenceHolderSet;
+        if(iterator - beginIndex > maxLengthSequenceHolder.length) {
+            maxLengthSequenceHolder.length = iterator - beginIndex;
+            maxLengthSequenceHolder.beginIndex = beginIndex;
+            maxLengthSequenceHolder.endIndex = iterator;
+        }
+        maxLengthSequenceHolder.sequence = sourceString.substring(maxLengthSequenceHolder.beginIndex, maxLengthSequenceHolder.endIndex);
+        return maxLengthSequenceHolder;
     }
 
     class SequenceHolder{
         public String sequence;
+        public int length;
         public int beginIndex;
         public int endIndex;
 
-        SequenceHolder(String sequence, int beginIndex, int endIndex) {
+        SequenceHolder(String sequence, int length, int beginIndex, int endIndex) {
             this.sequence = sequence;
+            this.length = length;
             this.beginIndex = beginIndex;
             this.endIndex = endIndex;
+        }
+        @Override
+        public String toString() {
+            return sequence + " L: " + length + " S: "+ beginIndex + " E: " + endIndex;
         }
     }
 
@@ -79,6 +76,8 @@ public class NonRepeatingStringSequence {
         sampleTest2();
         sampleTest3();
         sampleTest4();
+        sampleTest5();
+        sampleTest6();
     }
 
     private void sampleTest1() {
@@ -106,9 +105,25 @@ public class NonRepeatingStringSequence {
     }
 
     private void sampleTest4() {
-        String sourceSequence = "dabcebad";
+        String sourceSequence = "dabcebdfgh";
 
         System.out.println("Test 4: Length of longest non repeating sequence for String: " + sourceSequence);
+        System.out.println(">> " + getMaxLenthNonRepeatingSequence(sourceSequence));
+        System.out.println("----------------------------------------------");
+    }
+
+    private void sampleTest5() {
+        String sourceSequence = "dabcebdafaa";
+
+        System.out.println("Test 5: Length of longest non repeating sequence for String: " + sourceSequence);
+        System.out.println(">> " + getMaxLenthNonRepeatingSequence(sourceSequence));
+        System.out.println("----------------------------------------------");
+    }
+
+    private void sampleTest6() {
+        String sourceSequence = "abcdaabcdef";
+
+        System.out.println("Test 6: Length of longest non repeating sequence for String: " + sourceSequence);
         System.out.println(">> " + getMaxLenthNonRepeatingSequence(sourceSequence));
         System.out.println("----------------------------------------------");
     }
