@@ -42,7 +42,7 @@ public class LRUCache {
             }
 
             CacheElement cacheElement = new CacheElement(key, value);
-            cacheWindow.addLast(cacheElement);
+            cacheWindow.addFirst(cacheElement);
             currentCacheCapacity++;
             cacheElementReferenceMap.put(key, cacheElement);
         }

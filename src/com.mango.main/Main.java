@@ -5,6 +5,7 @@ import com.mango.problems.BinaryTreeIsBST;
 import com.mango.problems.BinaryTreeTilt;
 import com.mango.problems.EncodeDecodeNArrayTree;
 import com.mango.problems.LRUCache;
+import com.mango.problems.NonRepeatingStringSequence;
 import com.mango.problems.Permutation;
 import com.mango.problems.WordLadder;
 
@@ -25,7 +26,10 @@ public class Main {
         //EncodeDecodeNArrayTree encodeDecodeNArrayTree = new EncodeDecodeNArrayTree();
         //encodeDecodeNArrayTree.startEncodeDecode();
 
-        LRUCache lruCache = new LRUCache();
-        lruCache.testLRUCache();
+        //LRUCache lruCache = new LRUCache();
+        //lruCache.testLRUCache();
+
+        NonRepeatingStringSequence nonRepeatingStringSequence = new NonRepeatingStringSequence();
+        nonRepeatingStringSequence.testNonRepeatingStringSequence();
     }
 }

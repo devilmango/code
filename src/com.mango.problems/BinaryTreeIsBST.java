@@ -31,7 +31,7 @@ public class BinaryTreeIsBST {
     }
 
     public void checkForBST() {
-        sampleTest1();
+        //sampleTest1();
         sampleTest2();
         sampleTest3();
         sampleTest4();

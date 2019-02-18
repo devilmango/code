@@ -22,11 +22,11 @@ public class EncodeDecodeNArrayTree {
         // Store first child on left side and rest all child on the right of left child
         if(!root.childes.isEmpty()) {
             binaryTreeRoot.leftChild = encode(root.childes.get(0));
-        }
-        TreeNode binaryTreeRootIterator = binaryTreeRoot.leftChild;
-        for (int childsIterator = 1; childsIterator< root.childes.size(); childsIterator++) {
-            binaryTreeRootIterator.rightChild = encode(root.childes.get(childsIterator));
-            binaryTreeRootIterator = binaryTreeRootIterator.rightChild;
+            TreeNode binaryTreeRootIterator = binaryTreeRoot.leftChild;
+            for (int childsIterator = 1; childsIterator< root.childes.size(); childsIterator++) {
+                binaryTreeRootIterator.rightChild = encode(root.childes.get(childsIterator));
+                binaryTreeRootIterator = binaryTreeRootIterator.rightChild;
+            }
         }
 
         return binaryTreeRoot;
