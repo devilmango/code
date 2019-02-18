@@ -44,6 +44,11 @@ public class NonRepeatingStringSequence {
                 mapOfCharacter.put(character, iterator);
                 continue;
             }
+            int locationOfRepeatedCharacterInMap = mapOfCharacter.get(character);
+            if (locationOfRepeatedCharacterInMap == iterator - 1) {
+                beginIndex = iterator;
+                continue;
+            }
             // Found a repeating character. Thus capture non-repeating sequence so far.
             String nonRepeatingSequenceSoFar = sourceString.substring(beginIndex, iterator);
             sequenceHolderSet.add(new SequenceHolder(nonRepeatingSequenceSoFar, beginIndex, iterator - 1));
