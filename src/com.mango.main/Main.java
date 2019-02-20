@@ -3,6 +3,7 @@ package com.mango.main;
 import com.mango.ds.GraphNode;
 import com.mango.problems.BinaryTreeIsBST;
 import com.mango.problems.BinaryTreeTilt;
+import com.mango.problems.CoinChange;
 import com.mango.problems.EncodeDecodeNArrayTree;
 import com.mango.problems.LRUCache;
 import com.mango.problems.NonRepeatingStringSequence;
@@ -29,7 +30,10 @@ public class Main {
         //LRUCache lruCache = new LRUCache();
         //lruCache.testLRUCache();
 
-        NonRepeatingStringSequence nonRepeatingStringSequence = new NonRepeatingStringSequence();
-        nonRepeatingStringSequence.testNonRepeatingStringSequence();
+        //NonRepeatingStringSequence nonRepeatingStringSequence = new NonRepeatingStringSequence();
+        //nonRepeatingStringSequence.testNonRepeatingStringSequence();
+
+        CoinChange coinChange = new CoinChange();
+        coinChange.generateCoinDistribution();
     }
 }
