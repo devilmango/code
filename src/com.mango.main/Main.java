@@ -8,6 +8,7 @@ import com.mango.problems.EncodeDecodeNArrayTree;
 import com.mango.problems.LRUCache;
 import com.mango.problems.NonRepeatingStringSequence;
 import com.mango.problems.Permutation;
+import com.mango.problems.RotateArray;
 import com.mango.problems.WordLadder;
 
 public class Main {
@@ -33,7 +34,10 @@ public class Main {
         //NonRepeatingStringSequence nonRepeatingStringSequence = new NonRepeatingStringSequence();
         //nonRepeatingStringSequence.testNonRepeatingStringSequence();
 
-        CoinChange coinChange = new CoinChange();
-        coinChange.generateCoinDistribution();
+        //CoinChange coinChange = new CoinChange();
+        //coinChange.generateCoinDistribution();
+
+        RotateArray rotateArray = new RotateArray();
+        rotateArray.initiateSampleRotation();
     }
 }
